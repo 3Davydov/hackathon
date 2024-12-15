@@ -2,10 +2,10 @@ using hackathon.contracts;
 
 namespace hackathon.strategy;
 
-public class RandomTeamBuildingStrategy
+public class RandomTeamBuildingStrategy : ITeamBuildingStrategy
 {
     public List<Team> BuildTeams(List<Employee> teamLeads, List<Employee> juniors,
-                                        List<WishList> teamLeadsWishlists, List<WishList> juniorsWishlists)
+        List<WishList> teamLeadsWishlists, List<WishList> juniorsWishlists)
     {
         var random = new Random();
         var shuffledJuniors = juniors.OrderBy(_ => random.Next()).ToList();

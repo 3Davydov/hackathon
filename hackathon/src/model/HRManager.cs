@@ -5,9 +5,9 @@ namespace hackathon.model;
 
 public class HRManager
 {
-    private readonly RandomTeamBuildingStrategy _teamBuildingStrategy;
+    private readonly ITeamBuildingStrategy _teamBuildingStrategy;
 
-    public HRManager(RandomTeamBuildingStrategy teamBuildingStrategy)
+    public HRManager(ITeamBuildingStrategy teamBuildingStrategy)
     {
         _teamBuildingStrategy = teamBuildingStrategy;
     }

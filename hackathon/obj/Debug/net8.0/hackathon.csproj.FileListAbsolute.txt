@@ -57,3 +57,4 @@
 /home/danissimo/RiderProjects/hackathon/hackathon/bin/Debug/net8.0/xunit.execution.dotnet.dll
 /home/danissimo/RiderProjects/hackathon/hackathon/bin/Debug/net8.0/Newtonsoft.Json.dll
 /home/danissimo/RiderProjects/hackathon/hackathon/bin/Debug/net8.0/NuGet.Frameworks.dll
+/home/danissimo/RiderProjects/hackathon/hackathon/obj/Debug/net8.0/hackathon.sourcelink.json

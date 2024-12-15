@@ -137,3 +137,6 @@
 /home/danissimo/RiderProjects/hackathon/hackathon.tests/obj/Debug/net8.0/hackathon.tests.pdb
 /home/danissimo/RiderProjects/hackathon/hackathon.tests/obj/Debug/net8.0/hackathon.tests.genruntimeconfig.cache
 /home/danissimo/RiderProjects/hackathon/hackathon.tests/obj/Debug/net8.0/ref/hackathon.tests.dll
+/home/danissimo/RiderProjects/hackathon/hackathon.tests/obj/Debug/net8.0/hackathon.tests.sourcelink.json
+/home/danissimo/RiderProjects/hackathon/hackathon.tests/bin/Debug/net8.0/Castle.Core.dll
+/home/danissimo/RiderProjects/hackathon/hackathon.tests/bin/Debug/net8.0/Moq.dll

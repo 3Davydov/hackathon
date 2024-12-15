@@ -1,3 +1,4 @@
+using hackathon.contracts;
 using hackathon.model;
 using hackathon.strategy;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +18,8 @@ public class Program
                 services.AddTransient<HRManager>();
                 services.AddTransient<HRDirector>();
                 services.AddTransient<Hackathon>();
-                services.AddTransient<RandomTeamBuildingStrategy>();
+                services.AddTransient<ITeamBuildingStrategy, RandomTeamBuildingStrategy>();
+                services.AddTransient<ITeamBuildingStrategy, TeamLeadsHateTheirJuniorsStrategy>();
             })
             .ConfigureLogging(logging =>
             {
