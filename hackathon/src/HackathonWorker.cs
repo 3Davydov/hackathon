@@ -9,15 +9,14 @@ namespace hackathon;
 public class HackathonWorker : IHostedService
 {
     private readonly ILogger<HackathonWorker> _logger;
-    private readonly HRManager _hrManager;
-    private readonly HRDirector _hrDirector;
     private readonly Hackathon _hackathon;
+    
+    private readonly EmployeeLoader _employeeLoader;
 
-    public HackathonWorker(ILogger<HackathonWorker> logger, HRManager hrManager, HRDirector hrDirector, Hackathon hackathon)
+    public HackathonWorker(ILogger<HackathonWorker> logger, EmployeeLoader employeeLoader, Hackathon hackathon)
     {
         _logger = logger;
-        _hrManager = hrManager;
-        _hrDirector = hrDirector;
+        _employeeLoader = employeeLoader;
         _hackathon = hackathon;
     }
 
@@ -25,8 +24,8 @@ public class HackathonWorker : IHostedService
     {
         _logger.LogInformation("Hackathon worker started.");
 
-        var teamLeads = EmployeeLoader.LoadTeamLeads();
-        var juniors = EmployeeLoader.LoadJuniors();
+        var teamLeads = _employeeLoader.LoadTeamLeads();
+        var juniors = _employeeLoader.LoadJuniors();
         var teamLeadsWishLists = WishListGenerator.GenerateRandomWishlists(teamLeads, juniors);
         var juniorsWishLists = WishListGenerator.GenerateRandomWishlists(juniors, teamLeads);
 

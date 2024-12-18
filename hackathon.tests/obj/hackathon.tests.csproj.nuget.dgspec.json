@@ -13,7 +13,6 @@
         "packagesPath": "/home/danissimo/.nuget/packages/",
         "outputPath": "/home/danissimo/RiderProjects/hackathon/hackathon.tests/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/home/danissimo/.nuget/NuGet/NuGet.Config"
         ],
@@ -81,7 +80,6 @@
         "packagesPath": "/home/danissimo/.nuget/packages/",
         "outputPath": "/home/danissimo/RiderProjects/hackathon/hackathon/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/home/danissimo/.nuget/NuGet/NuGet.Config"
         ],

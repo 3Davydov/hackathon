@@ -1,15 +1,35 @@
 using hackathon.model;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace hackathon.tests.tests;
 
 public class WishListGenerationTest
 {
+    public static IConfiguration Configuration { get; private set; }
+    
+    private ServiceProvider BuildServiceProvider()
+    {
+        var builder = new ConfigurationBuilder()
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        var configuration = builder.Build();
+
+        var services = new ServiceCollection();
+        services.Configure<EmployeeLoaderOptions>(configuration.GetSection("EmployeeLoader"));
+        services.AddSingleton<EmployeeLoader>();
+
+        return services.BuildServiceProvider();
+    }
+    
     [Fact]
     public void Wishlist_Size_ShouldBeEqualToParticipants()
     {
-        var juniors = EmployeeLoader.LoadJuniors();
-        var teamLeads = EmployeeLoader.LoadTeamLeads();
+        var serviceProvider = BuildServiceProvider();
+        var loader = serviceProvider.GetRequiredService<EmployeeLoader>();
+        var juniors = loader.LoadJuniors();
+        var teamLeads = loader.LoadTeamLeads();
 
         var wishlists = WishListGenerator.GenerateRandomWishlists(juniors, teamLeads);
         Assert.Equal(20, wishlists.Count); /* Should match participant count */
@@ -19,8 +39,10 @@ public class WishListGenerationTest
     [Fact]
     public void AllJuniors_ShouldBeAssignedToAWishlist()
     {
-        var juniors = EmployeeLoader.LoadJuniors();
-        var teamLeads = EmployeeLoader.LoadTeamLeads();
+        var serviceProvider = BuildServiceProvider();
+        var loader = serviceProvider.GetRequiredService<EmployeeLoader>();
+        var juniors = loader.LoadJuniors();
+        var teamLeads = loader.LoadTeamLeads();
 
         var wishlists = WishListGenerator.GenerateRandomWishlists(juniors, teamLeads);
 
@@ -33,8 +55,10 @@ public class WishListGenerationTest
     [Fact]
     public void AllTeamLeads_ShouldBeAssignedToAWishlist()
     {
-        var juniors = EmployeeLoader.LoadJuniors();
-        var teamLeads = EmployeeLoader.LoadTeamLeads();
+        var serviceProvider = BuildServiceProvider();
+        var loader = serviceProvider.GetRequiredService<EmployeeLoader>();
+        var juniors = loader.LoadJuniors();
+        var teamLeads = loader.LoadTeamLeads();
 
         var wishlists = WishListGenerator.GenerateRandomWishlists(juniors, teamLeads);
 
@@ -47,8 +71,10 @@ public class WishListGenerationTest
     [Fact]
     public void NoWishlist_ShouldNotHaveNullValues()
     {
-        var juniors = EmployeeLoader.LoadJuniors();
-        var teamLeads = EmployeeLoader.LoadTeamLeads();
+        var serviceProvider = BuildServiceProvider();
+        var loader = serviceProvider.GetRequiredService<EmployeeLoader>();
+        var juniors = loader.LoadJuniors();
+        var teamLeads = loader.LoadTeamLeads();
 
         var wishlists = WishListGenerator.GenerateRandomWishlists(juniors, teamLeads);
 
